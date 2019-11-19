@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo $KEY # empty
+./variables
+echo $KEY # empty
+source variables
+echo $KEY # not empty
+
+echo $1
+
+while [ true ]
+do
+cat << END
+TIME: `date`
+USERNAME: $USER
+A: $A
+END
+break
+done

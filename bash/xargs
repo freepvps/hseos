@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ls | xargs echo "FILES:"
+ls | xargs -I {} echo "FILE: {}"
