@@ -15,5 +15,7 @@ int main() {
     int y[2][2] = {{1, 2}, {3, 4}};
     magic(y);  // just warn
     
+    int* t = &y[0][0];
+    magic(t);
     return 0;
 }
