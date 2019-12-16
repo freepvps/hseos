@@ -12,9 +12,14 @@ int main() {
     operation_t* one = make_op_const(1);
     operation_t* xx1 = make_op_add(xx, one);
 
-    operation_t* res = make_op_div(xx, xx1);
+    operation_t* r = make_op_div(xx, xx1);
+    operation_t* dr = r->vtable->derivative(r, &value);
 
     value = 2;
-    printf("%f\n", compute_graph(res));
+
+    reset_graph(r, 1);
+    printf("%f\n", compute_graph(r));
+    reset_graph(dr, 1);
+    printf("%f\n", compute_graph(dr));
     return 0;
 }

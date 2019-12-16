@@ -7,25 +7,25 @@
 #include <stddef.h>
 
 
-void reset_graph(operation_t* op) {
-    if (!op->computing.output_computed) {
+void reset_graph(operation_t* op, int force) {
+    if (!op->output_computed && !force) {
         return;
     }
     for (size_t i = 0; i < op->inputs_count; i++) {
-        reset_graph((operation_t*)op->inputs[i]);
+        reset_graph((operation_t*)op->inputs[i], force);
     }
-    op->computing.output_computed = 0;
+    op->output_computed = 0;
 }
 
 
 float compute_graph(operation_t* op) {
-    if (op->computing.output_computed) {
+    if (op->output_computed) {
         return op->output_value;
     }
     for (size_t i = 0; i < op->inputs_count; i++) {
         compute_graph((operation_t*)op->inputs[i]);
     }
-    op->computing.output_computed = 1;
+    op->output_computed = 1;
     op->vtable->compute(op);
     return op->output_value;
 }
