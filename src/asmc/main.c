@@ -12,6 +12,7 @@ int main() {
         : "c"(y)
         : "%eax"
     );
+    asm("" ::: "memory");
     printf("x: %d\n", x);
     return 0;
 }
