@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include <sys/types.h>
 #include <fcntl.h>
+#include <netinet/in.h>
 
 int generate_file(const char* path) {
     int f = open(path, O_WRONLY | O_CREAT, 0644);
@@ -72,12 +73,13 @@ int test_seek(const char* path) {
     if (res) {
         size_t size = ((size_t)end_offset) / sizeof(int);
         for (size_t i = 0; i < size; i += 2) {
-            int tmp;
+            uint32_t tmp;
             res &= (
                 (!i || lseek(f, sizeof(tmp), SEEK_CUR) != -1)
                 && read(f, &tmp, sizeof(tmp)) == sizeof(tmp)
             );
-            printf("%d %d\n", (int)i, tmp);
+            tmp = ntohl(tmp);
+            printf("%d %u\n", (int)i, tmp);
         }
     }
     if (f != -1) {
