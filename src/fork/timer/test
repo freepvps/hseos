@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+import sys
+import os
+import signal
+
+
+def main():
+    print(os.environ.get('STEP', 'null'), 'args:', *sys.argv)
+    #exit(2)
+    os.kill(os.getpid(), signal.SIGTERM)
+
+
+if __name__ == '__main__':
+    main()
