@@ -4,7 +4,9 @@ import os
 
 
 def main():
-    print('args:', *sys.argv)
+    print(sys.argv)
+    fd = int(sys.argv[1])
+    print(os.read(fd, 6))
 
 
 if __name__ == '__main__':

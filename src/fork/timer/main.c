@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
         pid_t child = fork();
         if (child == 0) {
             sprintf(counter_str, "STEP=%" PRIu64, counter);
-            int res = execve(argv[2], &argv[2], environ);
+            execve(argv[2], &argv[2], environ);
             printf("exec error: %s\n", strerror(errno));
             return -1;
         }

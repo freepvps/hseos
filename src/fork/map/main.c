@@ -44,7 +44,7 @@ int main(int argc, char** argv) {
             execvp(argv[1], &argv[1]);
             printf("error: %s\n", strerror(errno));
             break;
-        } else if (wait(NULL) == -1) {
+        } else if (waitpid(pid, NULL, 0) == -1) {
             break;
         }
     }
