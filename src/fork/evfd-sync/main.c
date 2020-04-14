@@ -61,7 +61,7 @@ int main(int argc, char** argv) {
                 printf("%" PRIu64 "\n", x);
             }
             ++x;
-            
+
             uint64_t next_id = (current_id + 1) % THREADS;
             check_result(write(fds[next_id], &x, sizeof(x)) == sizeof(x), "write efd");
             if (x > N) {
