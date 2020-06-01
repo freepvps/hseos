@@ -161,7 +161,6 @@ void run_epoll() {
     }
     int fd = fds[0];
 
-
     int efd = epoll_create(1);
     struct epoll_event ev;
     ev.data.fd = fd;
