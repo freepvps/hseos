@@ -19,7 +19,6 @@ int main() {
     CPU_SET(0, &s);
     pthread_setaffinity_np(pthread_self(), 1, &s);
 
-
     while (1) {
         if (pid) {
             size_t ticks = rdtscp();
