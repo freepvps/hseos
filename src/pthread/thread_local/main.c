@@ -47,8 +47,6 @@ int main() {
     pthread_join(th1, NULL);
     pthread_join(th2, NULL);
 
-    
-
     printf("main %d\n", (int)s.x);
 
     return 0;
