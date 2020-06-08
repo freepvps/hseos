@@ -9,11 +9,6 @@ struct AtomicList {
     void* payload;
 };
 
-struct X {
-    uint32_t v;
-    uint8_t y;
-}
-
 typedef struct AtomicList atomic_list_t;
 
 
