@@ -13,8 +13,12 @@ typedef struct AtomicList atomic_list_t;
 
 
 void atomic_push(atomic_list_t* head, atomic_list_t* node) {
-    node->next = node;
-    __atomic_exchange(&head->next, &node->next, &node->next, __ATOMIC_SEQ_CST);
+    while (1) {
+        atomic_list_t* current_next = __atomic_load_n(&head->next, __ATOMIC_SEQ_CST);
+        if (__atomic_compare_exchange(&head->next, &current_next, &node, 1, __ATOMIC_SEQ_CST, __ATOMIC_SEQ_CST)) {
+            break;
+        }
+    }
 }
 
 
